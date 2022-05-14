@@ -5,6 +5,7 @@ import {
   Get,
   Param,
   ParseUUIDPipe,
+  Patch,
   Post,
 } from '@nestjs/common';
 import { Item } from '../entities/item.entity';
@@ -29,12 +30,12 @@ export class ItemsController {
     return await this.itemsService.create(createItemDto);
   }
 
-  // @Patch(':id')
-  // updateStatus(@Param('id', ParseUUIDPipe) id: string): Item {
-  //   return this.itemsService.updateStatus(id);
-  // }
+  @Patch(':id')
+  async updateStatus(@Param('id', ParseUUIDPipe) id: string): Promise<Item> {
+    return await this.itemsService.updateStatus(id);
+  }
   @Delete(':id')
-  delete(@Param('id', ParseUUIDPipe) id: string): void {
-    this.itemsService.delete(id);
+  async delete(@Param('id', ParseUUIDPipe) id: string): Promise<void> {
+    await this.itemsService.delete(id);
   }
 }
