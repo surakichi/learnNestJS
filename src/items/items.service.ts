@@ -21,8 +21,8 @@ export class ItemsService {
     return found;
   }
 
-  async create(createItemDto: CreateItemDto): Promise<Item> {
-    return await this.itemRepository.createItem(createItemDto);
+  async create(createItemDto: CreateItemDto, userId: string): Promise<Item> {
+    return await this.itemRepository.createItem(createItemDto, userId);
   }
 
   async updateStatus(id: string): Promise<Item> {
